@@ -1,13 +1,13 @@
 import { z } from "zod";
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 type Simplify<T> = { [P in keyof T]: T[P] } & {};
 
 const schema = z.object({
     NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
     PORT: z
         .string()
-        .default("3000")
-        .transform((val) => parseInt(val, 10)),
+        .default("3000"),
     DB_PORT: z
         .string()
         .default("5432")

@@ -11,10 +11,12 @@
         "outDir": "dist",
         "skipLibCheck": true,
         "allowJs": true,
+        "noUncheckedIndexedAccess": true,
         "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"]
         }
     },
-    "include": ["src/**/*"]
+    "include": ["src/**/*"],
+    "exclude": ["dist", "node_modules"]
 }

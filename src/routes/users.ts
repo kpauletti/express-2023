@@ -1,12 +1,11 @@
 import { Router } from "express";
-import { User } from "../db/models/user";
 const router = Router();
 
-router.get("/", async function (req, res, next) {
+router.get("/", async function (req, res, _next) {
     res.send("respond with a resource");
 });
 
-router.get("/:id", async function (req, res, next) {
+router.get("/:id", async function (req, res, _next) {
     const { id } = req.params;
     res.send(`respond with a resource ${id}`);
 });

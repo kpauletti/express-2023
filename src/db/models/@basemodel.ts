@@ -1,12 +1,5 @@
 import { UUID } from "crypto";
-import {
-    Model,
-    InferAttributes,
-    InferCreationAttributes,
-    DataTypes,
-    CreationOptional,
-    type Sequelize,
-} from "sequelize";
+import { Model, InferAttributes, InferCreationAttributes, DataTypes, CreationOptional } from "sequelize";
 
 type BaseAttributes = {
     id: UUID;
@@ -14,8 +7,7 @@ type BaseAttributes = {
     updatedAt: Date;
 };
 
-export type modelSetup = (sequelize: Sequelize) => void;
-
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export abstract class BaseModel<T extends Model<any, any>>
     extends Model<InferAttributes<T>, InferCreationAttributes<T>>
     implements BaseAttributes

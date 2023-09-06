@@ -12,7 +12,7 @@ const validateSignup = validate({
     confirmPassword: z.string().min(8),
 });
 
-router.post("/signup", validateSignup, async function (req, res, next) {
+router.post("/signup", validateSignup, async function (req, res, _next) {
     try {
         await User.create({
             name: req.body.name,
@@ -36,7 +36,7 @@ const validateLogin = validate({
     password: z.string().min(8),
 });
 
-router.post("/login", validateLogin, async function (req, res, next) {
+router.post("/login", validateLogin, async function (req, res, _next) {
     try {
         const user = await User.findOne({
             where: {

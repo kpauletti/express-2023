@@ -3,7 +3,7 @@ import { env } from "../../utils/env";
 import configs from "../config/config";
 import { User } from "./user";
 
-type Configs = {
+export type Configs = {
     [key in typeof env.NODE_ENV]: {
         username: string;
         password: string;
@@ -20,7 +20,7 @@ const config = (configs as Configs)[env.NODE_ENV];
 //TODO think of a typesafe way of doing this programmatically
 const models = [User];
 
-let db = {} as DB;
+const db = {} as DB;
 
 export async function initDB() {
     const sequelize = new Sequelize(config.database, config.username, config.password, config);
