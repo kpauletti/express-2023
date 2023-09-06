@@ -1,0 +1,21 @@
+version: "3"
+services:
+  # app:
+  #   container_name: app
+  #   restart: always
+  #   build: .
+  #   ports:
+  #     - "3000:3000"
+  #   links:
+  #     - postgres
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./tmp/pgdata:/var/lib/postgresql/data
