@@ -5,21 +5,24 @@ import { z } from "zod";
 const router = Router();
 import validate from "./middleware/validate";
 
-const signupSchema = {
+const validateSignup = validate({
     name: z.string().min(2),
     email: z.string().email(),
     password: z.string().min(8),
     confirmPassword: z.string().min(8),
-};
+});
 
-router.post("/signup", validate(signupSchema), async function (req, res, next) {
+router.post("/signup", validateSignup, async function (req, res, next) {
     try {
-        const user = await User.create({
+        await User.create({
             name: req.body.name,
             email: req.body.email,
             passwordHash: bcrypt.hashSync(req.body.password, 10),
         });
-        res.json(user);
+
+        res.json({
+            message: "User created",
+        });
     } catch (error) {
         res.status(400).json({
             message: "Invalid request body",
@@ -28,12 +31,12 @@ router.post("/signup", validate(signupSchema), async function (req, res, next) {
     }
 });
 
-const loginSchema = {
+const validateLogin = validate({
     email: z.string().email(),
     password: z.string().min(8),
-};
+});
 
-router.post("/login", validate(loginSchema), async function (req, res, next) {
+router.post("/login", validateLogin, async function (req, res, next) {
     try {
         const user = await User.findOne({
             where: {
@@ -53,6 +56,7 @@ router.post("/login", validate(loginSchema), async function (req, res, next) {
             });
             return;
         }
+        res.cookie("token", user.generateJWT());
         res.json(user);
     } catch (error) {
         res.status(400).json({

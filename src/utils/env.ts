@@ -16,6 +16,7 @@ const schema = z.object({
     DB_NAME: z.string().default("app"),
     DB_USER: z.string().default("postgres"),
     DB_PASSWORD: z.string().default(""),
+    JWT_SECRET: z.string().default("secret"),
 });
 
 const parsed = schema.safeParse(process.env);
