@@ -10,7 +10,8 @@
     "migrate": "sequelize-cli db:migrate",
     "rollback": "sequelize-cli db:migrate:undo",
     "seed": "sequelize-cli db:seed:all",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -40,6 +41,7 @@
     "eslint-config-prettier": "^9.0.0",
     "sequelize-cli": "^6.6.1",
     "tsc-watch": "^6.0.4",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "husky": "^8.0.0"
   }
 }
