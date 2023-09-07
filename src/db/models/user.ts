@@ -3,6 +3,13 @@ import jwt from "jsonwebtoken";
 import { BaseModel } from "./@basemodel";
 import { env } from "../../utils/env";
 
+export type UserAttributes = {
+    id: string;
+    name: string;
+    email: string;
+    createdAt: Date;
+    updatedAt: Date;
+};
 export class User extends BaseModel<User> {
     static TABLENAME = "Users" as const;
     declare name: string;
@@ -17,6 +24,18 @@ export class User extends BaseModel<User> {
             },
             env.JWT_SECRET
         );
+    }
+
+    static async verifyJWT(token: string) {
+        const decoded = jwt.verify(token, env.JWT_SECRET) as {
+            id: string;
+            email: string;
+        };
+        const user = await User.findByPk(decoded.id);
+        if (!user) {
+            throw new Error("Unauthorized");
+        }
+        return user;
     }
 
     static setup(sequelize: Sequelize) {

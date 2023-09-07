@@ -1,7 +1,7 @@
 import { Dialect, Sequelize } from "sequelize";
-import { env } from "../../utils/env";
-import configs from "../config/config";
-import { User } from "./user";
+import { env } from "../utils/env";
+import configs from "./config/config";
+import { User } from "./models/user";
 
 export type Configs = {
     [key in typeof env.NODE_ENV]: {

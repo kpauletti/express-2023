@@ -1,3 +1,7 @@
+/**
+ * This file is generated automatically by the sequelize-cli.
+ * https://github.com/sequelize/cli/blob/main/docs/README.md
+ */
 const config = {
     development: {
         username: process.env.DB_USER,

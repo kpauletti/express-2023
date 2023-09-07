@@ -1,13 +1,11 @@
 import { Router } from "express";
+import { jwt } from "./middleware/jwt";
+import { getUsers } from "./handlers/users/getUsers";
+import { getUser } from "./handlers/users/getUser";
+
 const router = Router();
 
-router.get("/", async function (req, res, _next) {
-    res.send("respond with a resource");
-});
-
-router.get("/:id", async function (req, res, _next) {
-    const { id } = req.params;
-    res.send(`respond with a resource ${id}`);
-});
+router.get("/", jwt, getUsers);
+router.get("/:id", jwt, getUser);
 
 export const UserRouter = router;

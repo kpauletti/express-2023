@@ -1,5 +1,5 @@
 import app from "./app";
-import { initDB } from "./db/models";
+import { initDB } from "./db";
 import { env } from "./utils/env";
 
 app.listen(env.PORT, async () => {

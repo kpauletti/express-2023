@@ -1,9 +1,12 @@
-import { z, ZodType } from "zod";
 import { RequestHandler } from "express";
+import { z, ZodType } from "zod";
 
-type Schema = Record<string, ZodType>;
-
-function validate(schema: Schema): RequestHandler {
+/**
+ *
+ * @description Validate the body of requests using zod.
+ * The parsed schema will overwrite the body which allows you to to refine incoming data
+ */
+export const validate = (schema: Record<string, ZodType>, fn: RequestHandler): RequestHandler => {
     return (req, res, next) => {
         if (!req.body) {
             res.status(400).json({
@@ -21,8 +24,6 @@ function validate(schema: Schema): RequestHandler {
         }
 
         req.body = result.data;
-        next();
+        fn(req, res, next);
     };
-}
-
-export default validate;
+};
