@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { BaseModel } from "./_basemodel";
 import { env } from "../../config/env";
 export class User extends BaseModel<User> {
-    static TABLENAME = "Users" as const;
+    static TABLENAME = "users" as const;
     declare name: string;
     declare email: string;
     declare passwordHash: string;

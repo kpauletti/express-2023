@@ -9,7 +9,7 @@
         "lint": "eslint .",
         "start": "node dist/server.js",
         "dev": "tsc-watch --onSuccess \"node dist/server.js\"",
-        "migrator": "node dist/db/cli.js"
+        "migrator": "pnpm run build && node dist/db/cli.js"
     },
     "dependencies": {
         "bcrypt": "^5.1.1",
@@ -41,6 +41,8 @@
         "eslint": "^8.48.0",
         "eslint-config-prettier": "^9.0.0",
         "husky": "^8.0.0",
+        "jest": "^29.6.4",
+        "supertest": "^6.3.3",
         "tsc-watch": "^6.0.4",
         "typescript": "^5.2.2"
     }
