@@ -1,15 +1,7 @@
 import { type Sequelize, DataTypes } from "sequelize";
 import jwt from "jsonwebtoken";
-import { BaseModel } from "./@basemodel";
-import { env } from "../../utils/env";
-
-export type UserAttributes = {
-    id: string;
-    name: string;
-    email: string;
-    createdAt: Date;
-    updatedAt: Date;
-};
+import { BaseModel } from "./_basemodel";
+import { env } from "../../config/env";
 export class User extends BaseModel<User> {
     static TABLENAME = "Users" as const;
     declare name: string;

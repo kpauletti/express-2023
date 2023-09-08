@@ -1,18 +1,12 @@
-import { UUID } from "crypto";
 import { Model, InferAttributes, InferCreationAttributes, DataTypes, CreationOptional } from "sequelize";
-
-type BaseAttributes = {
-    id: UUID;
-    createdAt: Date;
-    updatedAt: Date;
-};
+import { type BaseModel as BM } from "../../types/models/basemodel";
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export abstract class BaseModel<T extends Model<any, any>>
     extends Model<InferAttributes<T>, InferCreationAttributes<T>>
-    implements BaseAttributes
+    implements BM
 {
-    declare id: CreationOptional<UUID>;
+    declare id: CreationOptional<string>;
     declare createdAt: CreationOptional<Date>;
     declare updatedAt: Date | null;
 

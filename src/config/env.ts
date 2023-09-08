@@ -1,13 +1,8 @@
 import { z } from "zod";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-type Simplify<T> = { [P in keyof T]: T[P] } & {};
-
 const schema = z.object({
     NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
-    PORT: z
-        .string()
-        .default("3000"),
+    PORT: z.string().default("3000"),
     DB_PORT: z
         .string()
         .default("5432")
@@ -26,4 +21,4 @@ if (parsed.success === false) {
     throw new Error("Invalid env variables");
 }
 
-export const env = parsed.data as Simplify<z.infer<typeof schema>>;
+export const env = parsed.data as z.infer<typeof schema>;
