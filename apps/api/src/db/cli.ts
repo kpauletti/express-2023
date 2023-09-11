@@ -2,7 +2,7 @@ import { initDB, db } from ".";
 import { getMigrator } from "./umzug";
 
 /**
- * pnpm run migrator
+ * npm run migrator
  */
 async function main() {
     await initDB();
