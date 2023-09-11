@@ -1,6 +1,11 @@
 {
     "name": "infra",
     "main": "index.ts",
+    "scripts": {
+        "build": "tsc",
+        "lint": "eslint .",
+        "test": "jest --passWithNoTests"
+    },
     "devDependencies": {
         "@types/node": "^16"
     },
